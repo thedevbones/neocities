@@ -15,11 +15,9 @@ h2 {
 }
 
 p {
-  font-size: 20px;
-  text-align: center;
-  width: 30%;
+  max-width: 70%;
   margin: 0 auto;
-  padding: 20px;
+  word-wrap: normal;
 }
 
 button {
