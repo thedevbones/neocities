@@ -1,4 +1,5 @@
 body {
+  background-color: black;
   background: url('../images/dungeon.gif') no-repeat center center fixed;
   background-size: cover;
   color: white;
