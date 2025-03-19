@@ -9,7 +9,7 @@
   </head>
   <body>
     <img src="/images/aniskull.gif" alt="Aniskull Image">
-    <img src="aboutme.png" alt="Title Image" style="width: 20%;">
+    <img src="/images/aboutme.png" alt="Title Image" style="width: 20%;">
     <img src="/images/aniskull.gif" alt="Aniskull Image">
 
     <p> <b> Who the heck is this guy? </b> My name is Jordan, otherwise known as thedevbones. I am 21 years old and a university student studying computer science. 
@@ -27,7 +27,7 @@
     <br>
     <div id="footer"></div>
     <script>
-      fetch('footer.html')
+      fetch('../footer.html')
       .then(response => response.text())
       .then(data => document.getElementById('footer').innerHTML = data)
       .catch(console.error);
