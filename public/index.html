@@ -26,16 +26,12 @@
     <br>
     <img src="https://web.archive.org/web/20091026201427/http://au.geocities.com/queens_park_ipswich/construction.gif" alt="Under Construction">
 
+    <div id="footer"></div>
+    <script>
+      fetch('footer.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('footer').innerHTML = data)
+      .catch(console.error);
+    </script>
   </body>
-
-  <footer>
-    <a href="https://neocities.org" target="_blank"> <img src="https://cyber.dabamos.de/88x31/neocities_hosted2.gif" alt="Hosted on Neocities"> </a>
-    <a href="https://code.visualstudio.com/" target="_blank"> <img src="https://cyber.dabamos.de/88x31/vscbutton.gif" alt="Made with VSCode"> </a>
-    <a href="https://discord.com/users/218925142519054337" target="_blank"> <img src="https://cyber.dabamos.de/88x31/discord_now.gif" alt="My Discord"> </a>
-    <a href="mailto:thedevbones@gmail.com" target="_blank"> <img src="https://pilosophos.com/88x31-viewer/buttons/hellnet.work/Area51_Lair_8596_gif_email50.gif" alt="Email Me"> </a>
-    <a href="https://bsky.app/profile/devbones.bsky.social" target="_blank"> <img src="https://spootymaniacs.nekoweb.org/images/buttons/bluesky.png" alt="Bluesky Profile"> </a>
-    <a href="https://x.com/thedevbones" target="_blank"> <img src="twitter.gif" alt="Twitter Profile"> </a>
-    <a href="https://godotengine.org/" target="_blank"> <img src="godot.gif" alt="Godot Engine"> </a>
-    <a href="https://cooltext.com" target="_blank"> <img src="https://pilosophos.com/88x31-viewer/buttons/hellnet.work/SouthBeach_Island_9909_cooltext_logo.gif" alt="CoolText"> </a>
-  </footer>
 </html>
