@@ -33,11 +33,23 @@ button {
   cursor: pointer;
 }
 
+.nav-item {
+  text-decoration: none;
+}
+
 .nav-item img {
   width: 200px;
   height: 100px;
   object-fit: contain;
   vertical-align: middle;
+}
+
+.subtitle {
+  width: 20%;
+}
+
+.back-button {
+  width: 10%;
 }
 
 footer {
