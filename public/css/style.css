@@ -39,3 +39,23 @@ button {
   object-fit: contain;
   vertical-align: middle;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+footer hr {
+  border: 1px solid rgb(36, 36, 36);
+  margin: 20px 0;
+}
+
+footer a {
+  text-decoration: none;
+}
