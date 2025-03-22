@@ -48,6 +48,8 @@ footer {
   background-color: black;
   color: white;
   text-align: center;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 footer hr {
