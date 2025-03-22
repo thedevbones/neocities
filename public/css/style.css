@@ -44,6 +44,10 @@ button {
   vertical-align: middle;
 }
 
+.title {
+  width: 40%;
+}
+
 .subtitle {
   width: 20%;
 }
