@@ -70,20 +70,20 @@ a img:hover {
 .game-table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid rgb(36, 36, 36);
+  /* border: 1px solid rgb(36, 36, 36); */
 }
 
-.game-table tr {
+/* .game-table tr {
   border: 1px solid rgb(36, 36, 36);
-}
+} */
 
 .game-image {
-  border: 1px solid rgb(36, 36, 36);
+  /* border: 1px solid rgb(36, 36, 36); */
   text-align: center;
 }
 
 .game-description {
-  border: 1px solid rgb(36, 36, 36);
+  /* border: 1px solid rgb(36, 36, 36); */
   padding: 10px;
 }
 
