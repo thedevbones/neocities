@@ -33,6 +33,12 @@ button {
   cursor: pointer;
 }
 
+.nav-container {
+  display: flex; 
+  gap: 20px; 
+  justify-content: center;
+}
+
 .nav-item {
   text-decoration: none;
 }
