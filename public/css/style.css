@@ -92,6 +92,11 @@ a img:hover {
   color: white;
 }
 
+.game-description h3 a:hover {
+  color: red;
+  transition: color 0.3s ease;
+}
+
 footer {
   position: fixed;
   bottom: 0;
