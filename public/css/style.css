@@ -82,3 +82,8 @@ footer hr {
 footer a {
   text-decoration: none;
 }
+
+footer a img:hover {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
