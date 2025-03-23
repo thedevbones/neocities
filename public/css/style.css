@@ -68,9 +68,9 @@ footer {
 
 footer hr {
   border: 1px solid rgb(36, 36, 36);
-  padding-top: 5%;
   margin-left: 20%;
   margin-right: 20%;
+  margin-bottom: 5%;
 }
 
 footer a {
