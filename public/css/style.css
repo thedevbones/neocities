@@ -63,6 +63,8 @@ footer {
   width: 100%;
   color: white;
   text-align: center;
+  padding-bottom: 5%;
+  padding-top: 5%;
 }
 
 footer hr {
