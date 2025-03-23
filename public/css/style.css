@@ -33,6 +33,11 @@ button {
   cursor: pointer;
 }
 
+a img::hover {
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
 .nav-container {
   display: flex; 
   gap: 20px; 
@@ -81,9 +86,4 @@ footer hr {
 
 footer a {
   text-decoration: none;
-}
-
-footer a img:hover {
-  opacity: 0.75;
-  transition: opacity 0.3s ease;
 }
