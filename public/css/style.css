@@ -71,6 +71,7 @@ a img:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0px;
   /*margin-bottom: 20px; */
 }
 
