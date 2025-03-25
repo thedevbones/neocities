@@ -74,6 +74,10 @@ a img:hover {
   /*margin-bottom: 20px; */
 }
 
+.title-container img {
+  height: 150px;
+}
+
 .game-table {
   width: 100%;
   border-collapse: collapse;
