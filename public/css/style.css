@@ -76,6 +76,8 @@ a img:hover {
 
 .title-container img {
   height: 150px;
+  object-fit: contain;
+  vertical-align: middle;
 }
 
 .game-table {
