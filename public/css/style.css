@@ -69,10 +69,11 @@ a img:hover {
 
 .title-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 0px;
-  /*margin-bottom: 20px; */
+  margin-left: calc(-40vw + 50%);
+  margin-right: calc(-40vw + 50%);
 }
 
 .title-container img {
