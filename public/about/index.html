@@ -1,43 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>about me</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div class="title-container">
-      <img src="/images/aniskull130.gif" alt="Aniskull Image">
-      <img src="/images/aboutme.png" alt="Title Image" class="title">
-      <img src="/images/aniskull130.gif" alt="Aniskull Image">
+    <div class="content">
+      <div class="title-container">
+        <img src="/images/aniskull130.gif" alt="Skull">
+        <img src="/images/aboutme.png" alt="About Me" class="title">
+        <img src="/images/aniskull130.gif" alt="Skull">
+      </div>
+
+      <div class="section">
+        <h3>Who is this guy?</h3>
+        <p>My name is Jordan, otherwise known as thedevbones. I am 22 years old and recently graduated from Texas State University with a Bachelors in Computer Science. 
+          My goal is to make fun games, hopefully one day for a living.</p>
+      </div>
+
+      <div class="section">
+        <h3>What do you do?</h3>
+        <p>As of early 2024, I have been teaching myself Godot through several personal projects, <a href="https://devbones.itch.io/deathcon">one of which</a> 
+          is nearing completion. I've been learning Unity as part of my internship at <a href="https://www.froglet.games/">Froglet Games</a>, where I am working on their 
+          title <em>Cosmic Shore</em>. On the side, I have been using Blender as a way to create some programmer art that meets my retro, low-poly aesthetic.</p>
+      </div>
+
+      <div class="section">
+        <h3>Contact Me</h3>
+        <p>If you have any questions or comments about me or my projects, please feel free to <a href="mailto:thedevbones@gmail.com">email me!</a></p>
+        <p>Follow me on <a href="https://bsky.app/profile/devbones.bsky.social">Bluesky</a> and <a href="https://x.com/thedevbones">Twitter</a> for the latest updates on my projects!</p>
+      </div>
+
+      <div class="section">
+        <a href="/" class="back-button"><img src="/images/back.png" alt="Back"></a>
+      </div>
+
+      <div id="footer"></div>
     </div>
 
-    <br> <br>
-    <h3>Who is this guy?</h3>
-    <p> My name is Jordan, otherwise known as thedevbones. I am 22 years old and recently graduated from Texas State University with a Bachelors in Computer Science. 
-      My goal is to make fun games, hopefully one day for a living.</p>
-    <br> <br>
-    <h3>What do you do?</h3>
-    <p> As of early 2024, I have been teaching myself Godot through several personal projects, <a href="https://devbones.itch.io/deathcon">one of which</a> is nearing completion.
-      I've been learning Unity as part of my internship at <a href="https://www.froglet.games/">Froglet Games</a>, where I am working on their title <em>Cosmic Shore</em>.
-      On the side, I have been using Blender as a way to create some programmer art that meets my retro, low-poly aesthetic. <p>
-    <br> <br>
-    <h3>Contact Me</h3>
-    <p> If you have any questions or comments about me or my projects, please feel free to <a href="mailto:your-email@example.com">email me!</a></p> 
-    <p> Follow me on <a href="https://bsky.app/profile/devbones.bsky.social">Bluesky</a> and <a href="https://x.com/thedevbones">Twitter</a> for the latest updates on my projects!</p>
-
-    <br> <br>
-    <a href="../index.html" class="back-button"><img src="/images/back.png" alt="Back"></a>
-
-    <br> <br>
-    <div id="footer"></div>
     <script>
-      fetch('../footer.html')
-      .then(response => response.text())
-      .then(data => document.getElementById('footer').innerHTML = data)
-      .catch(console.error);
+      fetch('/footer.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('footer').innerHTML = data)
+        .catch(console.error);
     </script>
   </body>
 </html>

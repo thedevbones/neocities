@@ -1,46 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>thedevbones crypt</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div class="title-container">
-      <img src="/images/aniskull293.gif" alt="Aniskull Image">
-      <img src="/images/index.png" alt="Title Image" class="title">
-      <img src="/images/aniskull293.gif" alt="Aniskull Image">
+    <div class="content">
+      <div class="title-container">
+        <img src="/images/aniskull293.gif" alt="Skull">
+        <img src="/images/index.png" alt="Welcome to the Crypt" class="title">
+        <img src="/images/aniskull293.gif" alt="Skull">
+      </div>
+
+      <div class="section">
+        <p>You have entered the crypt, the homepage of all things thedevbones.</p>
+      </div>
+
+      <div class="section">
+        <p>This is a personal website where I share my games, development progress, and other fun stuff.</p>
+      </div>
+
+      <div class="section">
+        <p>Feel free to explore the crypt using the buttons below:</p>
+      </div>
+
+      <div class="section">
+        <div class="nav-container">
+          <a href="/about/index.html" class="nav-item">
+            <img src="/images/aboutme.png" alt="About Me">
+          </a>
+          <a href="/games/index.html" class="nav-item">
+            <img src="/images/games.png" alt="Games">
+          </a>
+          <a href="/gallery/index.html" class="nav-item">
+            <img src="/images/gallery.png" alt="Gallery">
+          </a>
+        </div>
+      </div>
+
+      <div id="footer"></div>
     </div>
 
-    <br> <br>
-    <p> You have entered the crypt, the homepage of all things thedevbones.</p>
-    <br>
-    <p> This is a personal website where I share my games, development progress, and other fun stuff. </p>
-    <br>
-    <p> Feel free to explore the crypt using the buttons below:
-
-    <br> <br>
-    <div class="nav-container">
-      <a href="/about/index.html" class="nav-item">
-        <img src="images/aboutme.png" alt="About Me">
-      </a>
-      <a href="/games/index.html" class="nav-item">
-        <img src="images/games.png" alt="Games">
-      </a>
-      <a href="/gallery/index.html" class="nav-item">
-        <img src="images/gallery.png" alt="Gallery">
-      </a>
-    </div>
-
-    <br> <br>
-    <div id="footer"></div>
     <script>
-      fetch('footer.html')
-      .then(response => response.text())
-      .then(data => document.getElementById('footer').innerHTML = data)
-      .catch(console.error);
+      fetch('/footer.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('footer').innerHTML = data)
+        .catch(console.error);
     </script>
   </body>
 </html>

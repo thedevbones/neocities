@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gallery</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div class="title-container">
-      <img src="/images/aniskull130.gif" alt="Aniskull Image">
-      <img src="/images/gallery.png" alt="Title Image" class="title">
-      <img src="/images/aniskull130.gif" alt="Aniskull Image">
+    <div class="content">
+      <div class="title-container">
+        <img src="/images/aniskull130.gif" alt="Skull">
+        <img src="/images/gallery.png" alt="Gallery" class="title">
+        <img src="/images/aniskull130.gif" alt="Skull">
+      </div>
+
+      <div class="section">
+        <img src="/images/construction.gif" alt="Under Construction">
+      </div>
+
+      <div class="section">
+        <a href="/" class="back-button"><img src="/images/back.png" alt="Back"></a>
+      </div>
+
+      <div id="footer"></div>
     </div>
 
-    <br> <br>
-    <img src="/images/construction.gif" alt="Under Construction">
-
-    <br> <br>
-    <a href="../index.html" class="back-button"><img src="/images/back.png" alt="Back"></a>
-
-    <br> <br>
-    <div id="footer"></div>
     <script>
-      fetch('../footer.html')
-      .then(response => response.text())
-      .then(data => document.getElementById('footer').innerHTML = data)
-      .catch(console.error);
+      fetch('/footer.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('footer').innerHTML = data)
+        .catch(console.error);
     </script>
   </body>
 </html>

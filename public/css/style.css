@@ -3,19 +3,21 @@ body {
   background: url('../images/dungeon.gif') no-repeat center center fixed;
   background-size: cover;
   color: white;
-  font-family: tahoma;
+  font-family: tahoma, sans-serif;
   font-size: 18px;
   text-align: center;
-  padding-left: 30%;
-  padding-right: 30%;
-  padding-top: 1%;
+  margin: 0;
+  padding: 1% 0 80px 0;
 }
 
-h1 {
-  color: red;
+/* Main content */
+.content {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-h2 {
+h1, h2, h3 {
   color: red;
 }
 
@@ -24,23 +26,31 @@ p {
   word-wrap: normal;
 }
 
-button {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
 a img:hover {
   opacity: 0.75;
   transition: opacity 0.3s ease;
 }
 
+/* ===== Header ===== */
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 2em;
+}
+
+.title-container img {
+  height: 150px;
+  object-fit: contain;
+}
+
+/* ===== Navigation ===== */
+
 .nav-container {
-  display: flex; 
-  gap: 20px; 
+  display: flex;
+  gap: 20px;
   justify-content: center;
 }
 
@@ -52,53 +62,26 @@ a img:hover {
   width: 200px;
   height: 100px;
   object-fit: contain;
-  vertical-align: middle;
 }
 
-/*.title {
-  width: 40%;
-}
-
-.subtitle {
-  width: 20%;
-} */
+/* ===== Back Button ===== */
 
 .back-button img {
-  width: 10%;
+  width: 80px;
 }
 
-.title-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0px;
-  margin-left: calc(-40vw + 50%);
-  margin-right: calc(-40vw + 50%);
-}
-
-.title-container img {
-  height: 150px;
-  object-fit: contain;
-  vertical-align: middle;
-}
+/* ===== Games Table ===== */
 
 .game-table {
   width: 100%;
   border-collapse: collapse;
-  /* border: 1px solid rgb(36, 36, 36); */
 }
 
-/* .game-table tr {
-  border: 1px solid rgb(36, 36, 36);
-} */
-
-.game-image {
-  /* border: 1px solid rgb(36, 36, 36); */
-  text-align: center;
+.game-image img {
+  max-width: 200px;
 }
 
 .game-description {
-  /* border: 1px solid rgb(36, 36, 36); */
   padding: 10px;
 }
 
@@ -112,24 +95,76 @@ a img:hover {
   transition: color 0.3s ease;
 }
 
+/* ===== Sections ===== */
+
+.section {
+  margin-bottom: 2em;
+}
+
+/* ===== Footer ===== */
+
 footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  font-size: 18px;
-  color: white;
   text-align: center;
-  padding-bottom: 1%;
-}
-
-footer hr {
-  border: 1px solid rgb(36, 36, 36);
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-bottom: 1%;
+  padding: 8px 0;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 footer a {
   text-decoration: none;
+}
+
+footer img {
+  vertical-align: middle;
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding-bottom: 100px;
+  }
+
+  .content {
+    padding: 0 16px;
+  }
+
+  .title-container img {
+    height: 80px;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-item img {
+    width: 160px;
+    height: 80px;
+  }
+
+  .back-button img {
+    width: 60px;
+  }
+
+  .game-table,
+  .game-table tbody,
+  .game-table tr,
+  .game-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .game-image img {
+    max-width: 100%;
+  }
+
+  footer img {
+    height: 25px;
+  }
 }
