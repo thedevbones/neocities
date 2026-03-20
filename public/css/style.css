@@ -1,3 +1,5 @@
+/* ===== Base ===== */
+
 body {
   background-color: black;
   background: url('../images/dungeon.gif') no-repeat center center fixed;
@@ -15,10 +17,7 @@ body {
   max-width: 500px;
   margin: 0 auto;
   padding: 0 20px;
-}
-
-h1, h2, h3 {
-  color: red;
+  overflow: hidden;
 }
 
 p {
@@ -99,6 +98,10 @@ a img:hover {
 
 .section {
   margin-bottom: 2em;
+}
+
+.section img {
+  max-width: 100%;
 }
 
 /* ===== Footer ===== */
