@@ -77,9 +77,18 @@ a img:hover {
   border-collapse: collapse;
 }
 
+.game-image {
+  width: 200px;
+  position: relative;
+}
+
 .game-image img {
-  width: 315px;
-  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .game-description {
@@ -166,8 +175,14 @@ footer img {
     width: 100%;
   }
 
+  .game-image {
+    position: static;
+  }
+
   .game-image img {
-    max-width: 100%;
+    position: static;
+    width: 100%;
+    height: auto;
   }
 
   footer img {
