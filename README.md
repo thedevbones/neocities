@@ -2,7 +2,7 @@
 
 My personal website hosted on [Neocities](https://thedevbones.neocities.org/). A place to share my games, development progress, and other fun stuff.
 
-Built with no frameworks or build tools, just plain HTML and CSS. Made to look like the site is straight out of Web 1.0.
+Built with no frameworks or build tools, just plain HTMl, CSS, and JavaScript. Made to look like the site is straight out of Web 1.0.
 
 ## Structure
 
