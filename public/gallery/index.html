@@ -6,6 +6,57 @@
     <title>gallery - thedevbones crypt</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <style>
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 12px;
+      }
+
+      .gallery-item {
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .gallery-item img,
+      .gallery-item video {
+        width: 100%;
+        display: block;
+      }
+
+      .gallery-caption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding: 16px;
+        box-sizing: border-box;
+      }
+
+      .gallery-item:hover .gallery-caption {
+        opacity: 1;
+      }
+
+      .gallery-caption p {
+        color: white;
+        font-size: 14px;
+      }
+
+      @media (max-width: 768px) {
+        .gallery-grid {
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          gap: 8px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="content">
@@ -16,7 +67,7 @@
       </div>
 
       <div class="section">
-        <img src="/images/construction.gif" alt="Under Construction">
+        <div class="gallery-grid" id="gallery"></div>
       </div>
 
       <div class="section">
@@ -25,6 +76,63 @@
 
       <div id="footer"></div>
     </div>
+
+    <script>
+      var videoExtensions = ['mp4', 'webm', 'ogg'];
+
+      function getExtension(filename) {
+        return filename.split('.').pop().toLowerCase();
+      }
+
+      function createGalleryItem(filename, caption) {
+        var item = document.createElement('div');
+        item.className = 'gallery-item';
+
+        var ext = getExtension(filename);
+        var src = 'media/' + filename;
+
+        if (videoExtensions.indexOf(ext) !== -1) {
+          var video = document.createElement('video');
+          video.src = src;
+          video.muted = true;
+          video.loop = true;
+          video.playsInline = true;
+          item.addEventListener('mouseenter', function() { video.play(); });
+          item.addEventListener('mouseleave', function() { video.pause(); });
+          item.appendChild(video);
+        } else {
+          var img = document.createElement('img');
+          img.src = src;
+          img.alt = caption || filename;
+          img.loading = 'lazy';
+          item.appendChild(img);
+        }
+
+        if (caption) {
+          var overlay = document.createElement('div');
+          overlay.className = 'gallery-caption';
+          var text = document.createElement('p');
+          text.textContent = caption;
+          overlay.appendChild(text);
+          item.appendChild(overlay);
+        }
+
+        return item;
+      }
+
+      Promise.all([
+        fetch('manifest.json').then(function(r) { return r.json(); }),
+        fetch('captions.json').then(function(r) { return r.json(); }).catch(function() { return {}; })
+      ]).then(function(results) {
+        var files = results[0];
+        var captions = results[1];
+        var gallery = document.getElementById('gallery');
+
+        files.forEach(function(filename) {
+          gallery.appendChild(createGalleryItem(filename, captions[filename]));
+        });
+      });
+    </script>
 
     <script>
       fetch('/footer.html')
