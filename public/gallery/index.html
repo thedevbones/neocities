@@ -20,8 +20,7 @@
         aspect-ratio: 1 / 1;
       }
 
-      .gallery-item img,
-      .gallery-item video {
+      .gallery-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -53,6 +52,30 @@
         font-size: 14px;
       }
 
+      /* Play button icon on video thumbnails */
+      .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .play-icon::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        border-style: solid;
+        border-width: 10px 0 10px 18px;
+        border-color: transparent transparent transparent white;
+      }
+
       .lightbox {
         display: none;
         position: fixed;
@@ -79,6 +102,13 @@
         object-fit: contain;
       }
 
+      .lightbox iframe {
+        width: 90%;
+        max-width: 800px;
+        aspect-ratio: 16 / 9;
+        border: none;
+      }
+
       .lightbox-caption {
         color: white;
         font-size: 16px;
@@ -95,8 +125,9 @@
     </style>
   </head>
   <body>
-    <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <div class="lightbox" id="lightbox">
       <img id="lightbox-img" src="" alt="">
+      <iframe id="lightbox-video" src="" allowfullscreen></iframe>
       <p class="lightbox-caption" id="lightbox-caption"></p>
     </div>
 
@@ -119,43 +150,87 @@
     </div>
 
     <script>
-      var videoExtensions = ['mp4', 'webm', 'ogg'];
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightbox-img');
+      var lightboxVideo = document.getElementById('lightbox-video');
+      var lightboxCaption = document.getElementById('lightbox-caption');
 
-      function getExtension(filename) {
-        return filename.split('.').pop().toLowerCase();
+      function openImageLightbox(src, caption) {
+        lightboxImg.src = src;
+        lightboxImg.style.display = 'block';
+        lightboxVideo.style.display = 'none';
+        lightboxVideo.src = '';
+        lightboxCaption.textContent = caption || '';
+        lightboxCaption.style.display = caption ? 'block' : 'none';
+        lightbox.classList.add('active');
       }
 
-      function createGalleryItem(filename, caption) {
+      function openVideoLightbox(videoId, caption) {
+        lightboxVideo.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+        lightboxVideo.style.display = 'block';
+        lightboxImg.style.display = 'none';
+        lightboxImg.src = '';
+        lightboxCaption.textContent = caption || '';
+        lightboxCaption.style.display = caption ? 'block' : 'none';
+        lightbox.classList.add('active');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxVideo.src = '';
+        lightboxImg.src = '';
+      }
+
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox || e.target === lightboxImg || e.target === lightboxCaption) {
+          closeLightbox();
+        }
+      });
+
+      function createImageItem(filename, caption) {
         var item = document.createElement('div');
         item.className = 'gallery-item';
 
-        var ext = getExtension(filename);
         var src = 'media/' + filename;
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = caption || filename;
+        img.loading = 'lazy';
+        item.appendChild(img);
 
-        if (videoExtensions.indexOf(ext) !== -1) {
-          var video = document.createElement('video');
-          video.src = src;
-          video.muted = true;
-          video.loop = true;
-          video.playsInline = true;
-          item.addEventListener('mouseenter', function() { video.play(); });
-          item.addEventListener('mouseleave', function() { video.pause(); });
-          item.appendChild(video);
-        } else {
-          var img = document.createElement('img');
-          img.src = src;
-          img.alt = caption || filename;
-          img.loading = 'lazy';
-          item.appendChild(img);
+        item.addEventListener('click', function() {
+          openImageLightbox(src, caption);
+        });
 
-          item.addEventListener('click', function() {
-            document.getElementById('lightbox-img').src = src;
-            var captionEl = document.getElementById('lightbox-caption');
-            captionEl.textContent = caption || '';
-            captionEl.style.display = caption ? 'block' : 'none';
-            document.getElementById('lightbox').classList.add('active');
-          });
+        if (caption) {
+          var overlay = document.createElement('div');
+          overlay.className = 'gallery-caption';
+          var text = document.createElement('p');
+          text.textContent = caption;
+          overlay.appendChild(text);
+          item.appendChild(overlay);
         }
+
+        return item;
+      }
+
+      function createVideoItem(videoId, caption) {
+        var item = document.createElement('div');
+        item.className = 'gallery-item';
+
+        var img = document.createElement('img');
+        img.src = 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
+        img.alt = caption || 'Video';
+        img.loading = 'lazy';
+        item.appendChild(img);
+
+        var playIcon = document.createElement('div');
+        playIcon.className = 'play-icon';
+        item.appendChild(playIcon);
+
+        item.addEventListener('click', function() {
+          openVideoLightbox(videoId, caption);
+        });
 
         if (caption) {
           var overlay = document.createElement('div');
@@ -171,14 +246,20 @@
 
       Promise.all([
         fetch('manifest.json').then(function(r) { return r.json(); }),
-        fetch('captions.json').then(function(r) { return r.json(); }).catch(function() { return {}; })
+        fetch('captions.json').then(function(r) { return r.json(); }).catch(function() { return {}; }),
+        fetch('videos.json').then(function(r) { return r.json(); }).catch(function() { return []; })
       ]).then(function(results) {
         var files = results[0];
         var captions = results[1];
+        var videos = results[2];
         var gallery = document.getElementById('gallery');
 
+        videos.forEach(function(video) {
+          gallery.appendChild(createVideoItem(video.id, video.caption));
+        });
+
         files.forEach(function(filename) {
-          gallery.appendChild(createGalleryItem(filename, captions[filename]));
+          gallery.appendChild(createImageItem(filename, captions[filename]));
         });
       });
     </script>
