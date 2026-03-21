@@ -133,11 +133,12 @@
           img.src = src;
           img.alt = caption || filename;
           img.loading = 'lazy';
-          img.addEventListener('click', function() {
+          item.appendChild(img);
+
+          item.addEventListener('click', function() {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').classList.add('active');
           });
-          item.appendChild(img);
         }
 
         if (caption) {
