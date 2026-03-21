@@ -50,9 +50,32 @@
         font-size: 14px;
       }
 
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+      }
+
       @media (max-width: 768px) {
         .gallery-grid {
-          display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 8px;
         }
@@ -60,6 +83,10 @@
     </style>
   </head>
   <body>
+    <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+      <img id="lightbox-img" src="" alt="">
+    </div>
+
     <div class="content">
       <div class="title-container">
         <img src="/images/aniskull130.gif" alt="Skull">
@@ -106,6 +133,10 @@
           img.src = src;
           img.alt = caption || filename;
           img.loading = 'lazy';
+          img.addEventListener('click', function() {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+          });
           item.appendChild(img);
         }
 
